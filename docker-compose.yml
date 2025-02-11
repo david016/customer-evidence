@@ -1,0 +1,19 @@
+services:
+  mysql_db:
+    image: mysql
+    restart: always
+    ports:
+      - '3306:3306'
+    env_file:
+      - .env
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./src:/usr/src/app/src
+    restart: always
