@@ -22,13 +22,6 @@ import {
 export class CustomersController {
   constructor(private readonly customersService: CustomersService) {}
 
-  @ApiCreatedResponse({ description: 'Customer created.', type: Customer })
-  @ApiBadRequestResponse({ description: 'Bad request.' })
-  @Post()
-  async create(@Body() createCustomerDto: CreateCustomerDto) {
-    return this.customersService.create(createCustomerDto);
-  }
-
   @ApiOkResponse({ description: 'List of customers.', type: [Customer] })
   @Get()
   async findAll(): Promise<Customer[]> {
@@ -40,6 +33,13 @@ export class CustomersController {
   @Get(':id')
   async findOne(@Param('id') id: number) {
     return this.customersService.findOne(id);
+  }
+
+  @ApiCreatedResponse({ description: 'Customer created.', type: Customer })
+  @ApiBadRequestResponse({ description: 'Bad request.' })
+  @Post()
+  async create(@Body() createCustomerDto: CreateCustomerDto) {
+    return this.customersService.create(createCustomerDto);
   }
 
   @ApiOkResponse({ description: 'Customer updated.', type: Customer })

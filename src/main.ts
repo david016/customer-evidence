@@ -11,6 +11,7 @@ async function bootstrap() {
     .setDescription('The customers evidence API description')
     .setVersion('1.0')
     .build();
+
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, documentFactory);
 
