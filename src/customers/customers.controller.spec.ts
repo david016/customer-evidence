@@ -59,7 +59,7 @@ describe('CustomersController', () => {
 
   describe('findOne', () => {
     it('should return a customer', async () => {
-      expect(await controller.findOne('1')).toEqual({
+      expect(await controller.findOne(1)).toEqual({
         id: 1,
         name: 'John Doe',
         email: 'john.doe@example.com',
