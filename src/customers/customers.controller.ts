@@ -14,45 +14,36 @@ import { Customer } from './entities/customer.entity';
 import {
   ApiBadRequestResponse,
   ApiCreatedResponse,
+  ApiNotFoundResponse,
   ApiOkResponse,
-  ApiResponse,
 } from '@nestjs/swagger';
 
 @Controller('customers')
 export class CustomersController {
   constructor(private readonly customersService: CustomersService) {}
 
-  @ApiCreatedResponse({
-    description: 'Customer created.',
-    type: Customer,
-  })
-  @ApiBadRequestResponse({
-    description: 'Bad request.',
-  })
+  @ApiCreatedResponse({ description: 'Customer created.', type: Customer })
+  @ApiBadRequestResponse({ description: 'Bad request.' })
   @Post()
   async create(@Body() createCustomerDto: CreateCustomerDto) {
     return this.customersService.create(createCustomerDto);
   }
 
-  @ApiOkResponse({
-    description: 'List of customers.',
-    type: [Customer],
-  })
+  @ApiOkResponse({ description: 'List of customers.', type: [Customer] })
   @Get()
   async findAll(): Promise<Customer[]> {
     return this.customersService.findAll();
   }
 
-  @ApiOkResponse({
-    description: 'Customer found.',
-    type: Customer,
-  })
+  @ApiOkResponse({ description: 'Customer found.', type: Customer })
+  @ApiNotFoundResponse({ description: 'Customer not found.' })
   @Get(':id')
   async findOne(@Param('id') id: number) {
     return this.customersService.findOne(id);
   }
 
   @ApiOkResponse({ description: 'Customer updated.', type: Customer })
+  @ApiNotFoundResponse({ description: 'Customer not found.' })
   @Patch(':id')
   async update(
     @Param('id') id: number,
@@ -62,6 +53,7 @@ export class CustomersController {
   }
 
   @ApiOkResponse({ description: 'Customer removed.', type: Customer })
+  @ApiNotFoundResponse({ description: 'Customer not found.' })
   @Delete(':id')
   async remove(@Param('id') id: number) {
     return this.customersService.remove(id);
