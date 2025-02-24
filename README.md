@@ -22,9 +22,10 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## Usage
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- The server will be running at: http://localhost:3000.
+- API Documentation (Swagger UI): http://localhost:3000/api
 
 ## Compile and run the project
 
